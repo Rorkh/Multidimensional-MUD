@@ -1,0 +1,19 @@
+name: multidimensional-mud
+version: 0.1.0
+
+authors:
+  - Rorkh <78957156+Rorkh@users.noreply.github.com>
+
+targets:
+  server:
+    main: src/main.cr
+  benchmark:
+    main: src/benchmark.cr
+
+dependencies:
+  config:
+    github: chris-huxtable/config.cr
+
+crystal: 1.6.2
+
+license: MIT
