@@ -37,21 +37,20 @@ module MUD
 			end
 
 			# Special codes preproc
-			#if string.byte_slice(0, 15) == "# random colors"
-			#	string = string[17..string.size]
+			if string.byte_slice(0, 15) == "# random colors"
+				string = string[17..string.size]
 
-			#	io = IO::Memory.new
+				io = IO::Memory.new
 
-			#	codes = StaticArray.new()
+				string.each_char do |c|
+					io << "\e[" + ColorCodes.values.sample.to_s + "m"
+					io << c
+					io << "\e[0m"
+				end
 
-			#	string.each_char do |c|
-			#		io.write_string "\e[" + Random.rand(ColorCodes) + "m"
-			#		io.write_string c
-			#		io.write_string  "\e[0m"
-			#	end
-
-			#	io.close
-			#end
+				string = io.to_s
+				io.close
+			end
 
 			string
 		end
