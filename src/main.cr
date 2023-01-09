@@ -2,6 +2,8 @@ require "socket"
 require "config"
 
 require "./tools/output"
+require "./tools/ascii"
+
 require "./handler"
 
 def main()
@@ -13,6 +15,9 @@ def main()
   address = MUD::Output.blue(ip + ":" + port.to_s)
 
   MUD::Output.log "Setting up at " + address
+  MUD::ASCII.load
+
+  puts MUD::ASCII.get "welcome"
 
   begin
     server = TCPServer.new(ip, port)
