@@ -15,9 +15,11 @@ def main()
   address = MUD::Output.blue(ip + ":" + port.to_s)
 
   MUD::Output.log "Setting up at " + address
-  MUD::ASCII.load
 
-  puts MUD::ASCII.get "welcome"
+  MUD::ASCII.load
+  MUD::Output.log "Loaded ASCII storage"
+  MUD::Settings.init
+  MUD::Output.log "Loaded global MUD settings"
 
   begin
     server = TCPServer.new(ip, port)
